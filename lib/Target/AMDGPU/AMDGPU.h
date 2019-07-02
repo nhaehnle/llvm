@@ -213,6 +213,10 @@ extern char &SIInsertWaitcntsID;
 void initializeSIFormMemoryClausesPass(PassRegistry&);
 extern char &SIFormMemoryClausesID;
 
+void initializeGCNExperimentSubvectorAnalysisPass(PassRegistry&);
+extern char &GCNExperimentSubvectorAnalysisID;
+FunctionPass *createGCNExperimentSubvectorAnalysisPass();
+
 void initializeAMDGPUUnifyDivergentExitNodesPass(PassRegistry&);
 extern char &AMDGPUUnifyDivergentExitNodesID;
 

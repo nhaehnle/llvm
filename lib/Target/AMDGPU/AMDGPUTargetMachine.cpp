@@ -196,6 +196,7 @@ extern "C" void LLVMInitializeAMDGPUTarget() {
   initializeGlobalISel(*PR);
   initializeAMDGPUDAGToDAGISelPass(*PR);
   initializeGCNDPPCombinePass(*PR);
+  initializeGCNExperimentSubvectorAnalysisPass(*PR);
   initializeSILowerI1CopiesPass(*PR);
   initializeSIFixSGPRCopiesPass(*PR);
   initializeSIFixVGPRCopiesPass(*PR);
@@ -930,6 +931,8 @@ void GCNPassConfig::addOptimizedRegAlloc() {
   } else {
     insertPass(&MachineSchedulerID, &SIFormMemoryClausesID);
   }
+
+  insertPass(&MachineSchedulerID, &GCNExperimentSubvectorAnalysisID);
 
   // This must be run immediately after phi elimination and before
   // TwoAddressInstructions, otherwise the processing of the tied operand of
